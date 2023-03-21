@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ current_user.username}}
+{% endblock %}
+
+
+{% block body %}
+    <div class="content-section>">
+        <div class="media">
+           <img class="rounded-circle account-img" src="{{ context.image }}" alt="avatar">
+        </div>
+        <h3>Account base page</h3>
+        <div class="media-body>">
+            <p>Username - {{ current_user.username }}</p>
+            <p>Email - {{ current_user.email }}</p>
+        </div>
+    </div>
+    <div class="content-section">
+    <form method="post" enctype="multipart/form-data">
+      {{ context.form.hidden_tag() }}
+      <fieldset class="form_group">
+        <div class="form_section">
+          {{ context.form.username.label }}
+          {% if context.form.username.errors %}
+            {{ context.form.username (class="form-control form-control-sm is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in context.form.username.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ context.form.username (class="form-control form-control-sm")}}
+          {% endif %}
+        </div>
+        <div class="form_section">
+          {{ context.form.email.label }}
+          {% if context.form.email.errors %}
+            {{ context.form.email (class="form-control form-control-sm is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in context.form.email.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ context.form.email (class="form-control form-control-sm")}}
+          {% endif %}
+        </div>
+        <div class="form_section">
+          {{ context.form.image.label }}
+          {% if context.form.image.errors %}
+            {{ context.form.image (class="form-control-file is-invalid")}}
+              {% for error in context.form.image.errors %}
+                <span class="text-danger">{{ error }}</span>
+              {% endfor %}
+          {% else %}
+            {{ context.form.image (class="form-control-file")}}
+          {% endif %}
+        </div>
+      </fieldset>
+      <div class = "form_section">
+        <br>
+        {{ context.form.submit}}
+      </div>
+    </form>
+    </div>
+{% endblock %}

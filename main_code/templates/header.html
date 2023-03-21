@@ -1,0 +1,38 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Poster</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Main page <span class="sr-only">(current)</span></a>
+      </li>
+      {% if current_user.is_authenticated %}
+          <li class="nav-item active">
+            <a class="nav-link" href="post_create">Create a post</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="profile">Profile</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="sign_out">Sign out</a>
+          </li>
+      {% else %}
+        <li class="nav-item active">
+            <a class="nav-link" href="auth_page">Sign in</a>
+          </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="sign_up">Sign up</a>
+          </li>
+      {% endif %}
+    </ul>
+    <form class="form-inline my-2 my-lg-0" method="GET" action="{{ url_for('search') }}">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+</header>

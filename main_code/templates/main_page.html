@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Main page
+{% endblock %}
+
+{% block body %}
+  <h3>Welcome, {{ context.username }}</h3>
+  <p>Here are all the posts on the site:</p>
+  {% for post in context.posts %}
+    <a href="post/{{post.id}}">{{ post.title }}</a><br>
+  {% endfor %}
+
+{% endblock %}

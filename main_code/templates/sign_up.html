@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Sign up
+{% endblock %}
+
+{% block body %}
+  <div class="content-section">
+    <form method="post">
+      {{ context.form.hidden_tag() }}
+      <fieldset class="form_group">
+        <div class="form_section">
+          {{ context.form.username.label }}
+          {% if context.form.username.errors %}
+            {{ context.form.username (class="form-control form-control-sm is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in context.form.username.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ context.form.username (class="form-control form-control-sm")}}
+          {% endif %}
+        </div>
+        <div class="form_section">
+          {{ context.form.email.label }}
+          {% if context.form.email.errors %}
+            {{ context.form.email (class="form-control form-control-sm is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in context.form.email.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ context.form.email (class="form-control form-control-sm")}}
+          {% endif %}
+        </div>
+         <div class="form_section">
+          {{ context.form.pwd.label }}
+          {% if context.form.pwd.errors %}
+            {{ context.form.pwd (class="form-control form-control-sm is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in context.form.pwd.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ context.form.pwd (class="form-control form-control-sm")}}
+          {% endif %}
+        </div>
+          <div class="form_section">
+          {{ context.form.cpwd.label }}
+          {% if context.form.cpwd.errors %}
+            {{ context.form.cpwd (class="form-control form-control-sm is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in context.form.cpwd.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ context.form.cpwd (class="form-control form-control-sm")}}
+          {% endif %}
+        </div>
+      </fieldset>
+      <div class = "form_section">
+        <br>
+        {{ context.form.submit}}
+      </div>
+    </form>
+  </div>
+{% endblock %}

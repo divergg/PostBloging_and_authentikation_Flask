@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ context.post.title }}
+{% endblock %}
+
+{% block body %}
+  <div class="content-section">
+    <form method="post">
+      {{ context.form.hidden_tag() }}
+      <fieldset class="form_group">
+        <div class="form_section">
+          {{ context.form.title.label }}
+          {% if context.form.title.errors %}
+            {{ context.form.title (class="form-control form-control-sm is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in context.form.title.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ context.form.title (class="form-control form-control-sm")}}
+          {% endif %}
+        </div>
+        <div class="form_section">
+          {{ context.form.content.label }}
+          {% if context.form.content.errors %}
+            {{ context.form.content (class="form-control form-control-lg is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in context.form.content.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ context.form.content (class="form-control form-control-lg")}}
+          {% endif %}
+        </div>
+      </fieldset>
+      <div class = "form_section">
+        <br>
+        {{ context.form.submit}}
+      </div>
+    </form>
+    <br>
+    </div>
+
+
+{% endblock %}
