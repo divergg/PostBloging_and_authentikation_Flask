@@ -7,8 +7,16 @@
 {% block body %}
   <h3>Welcome, {{ context.username }}</h3>
   <p>Here are all the posts on the site:</p>
-  {% for post in context.posts %}
+  {% for post in context.posts.items %}
     <a href="post/{{post.id}}">{{ post.title }}</a><br>
   {% endfor %}
-
+  {% for page_num in context.posts.iter_pages(left_edge=1, right_edge=1) %}
+    {% if page_num %}
+      {% if page_num == context.posts.page %}
+        <a class="btn btn-info mb-4" href="{{ url_for('main_page', page=page_num) }}">{{ page_num }}</a>
+      {% else %}
+        <a class="btn btn-outline-info mb-4" href="{{ url_for('main_page', page=page_num) }}">{{ page_num }}</a>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
 {% endblock %}

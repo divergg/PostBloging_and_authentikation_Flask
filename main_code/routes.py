@@ -28,7 +28,7 @@ def register_page():
     return flask.render_template('sign_up.html', context=context)
 
 
-@app.route('/auth',  methods=['GET', 'POST'])
+@app.route('/auth_page',  methods=['GET', 'POST'])
 def auth_page():
     if flask_login.current_user.is_authenticated:
         return flask.redirect(flask.url_for('main_page'))
@@ -65,7 +65,9 @@ def main_page():
         query = flask.request.args.get('query')
     else:
         query = ''
-    posts = Post.query.filter(or_(Post.content.contains(query), Post.title.contains(query))).order_by('date_created')
+    posts = Post.query.filter(or_(Post.content.contains(query), Post.title.contains(query))).order_by(Post.date_created.desc())
+    page = flask.request.args.get('page', 1, type=int)
+    posts = posts.paginate(page=page, per_page=3)
     context = {
         'username': username,
         'posts': posts
